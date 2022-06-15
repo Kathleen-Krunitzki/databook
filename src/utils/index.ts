@@ -1,0 +1,8 @@
+export const charactersInfo = [
+    { id: 1, image: '/images/naruto-face.png', imageInfo: '/images/naruto.png', name: 'Naruto', isActive: true, color: 'primary.100', village: 'Vila da Folha', hp: 65, attack: 55, defense: 15, velocity: 90, skillOne: 'Rasengan', skillTwo: 'Clones das Sombras' },
+    { id: 2, image: '/images/sasuke-face.png', imageInfo: '/images/sasuke.png', name: 'Sasuke', isActive: false, color: 'primary.300', village: 'Vila da Folha', hp: 50, attack: 50, defense: 30, velocity: 80, skillOne: 'Susanoo', skillTwo: 'Sharingan' },
+    { id: 3, image: '/images/kakashi-face.png', imageInfo: '/images/kakashi.png', name: 'Kakashi', isActive: false, color: 'primary.400', village: 'Vila da Folha', hp: 70, attack: 60, defense: 25, velocity: 90, skillOne: 'Chidori', skillTwo: 'Sharingan' },
+    { id: 4, image: '/images/hinata-face.png', imageInfo: '/images/hinata.png', name: 'Hinata', isActive: false, color: 'primary.200', village: 'Vila da Folha', hp: 25, attack: 51, defense: 45, velocity: 40, skillOne: 'Byakugan', skillTwo: 'Oito Trigramas' },
+    { id: 5, image: '/images/shikamaru-face.png', imageInfo: '/images/shikamaru.png', name: 'Shikamaru', isActive: false, color: 'primary.500', village: 'Vila da Folha', hp: 60, attack: 30, defense: 20, velocity: 30, skillOne: 'Imitação pela Sombra', skillTwo: 'Estrangulamento pela Sombra' },
+    { id: 6, image: '/images/rocklee-face.png', imageInfo: '/images/rock-lee.png', name: 'Rock Lee', isActive: false, color: 'primary.600', village: 'Vila da Folha', hp: 35, attack: 45, defense: 30, velocity: 25, skillOne: 'Furacão da Folha', skillTwo: 'Oito Portões' },
+]

@@ -1,58 +1,56 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Console } from 'console'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import CardInfo from '../components/CardInfo'
 import CardName from '../components/CardName'
+import { charactersInfo } from '../utils'
 
-const names = [
-  { image: '/images/naruto-face.png', name: 'Naruto' },
-  { image: '/images/sasuke-face.png', name: 'Sasuke' },
-  { image: '/images/kakashi-face.png', name: 'Kakashi' },
-  { image: '/images/hinata-face.png', name: 'Hinata' },
-  { image: '/images/shikamaru-face.png', name: 'Shikamaru' },
-  { image: '/images/rocklee-face.png', name: 'Rock Lee' },
-]
+interface ICharactersProps {
+  id: number,
+  name: string,
+  image: string,
+  isActive: boolean;
+}
+
+interface IInfoProps {
+  name: string,
+  village: string,
+  hp: number,
+  attack: number,
+  defense: number,
+  velocity: number,
+  skillOne: string,
+  skillTwo: string,
+  color: string,
+  imageInfo: string,
+}
 
 export default function Home() {
+  const [characters, setCharacters] = useState<ICharactersProps[]>(charactersInfo)
+  const [character, setCharacter] = useState<IInfoProps>(charactersInfo[0])
+
+  function select(id: number) {
+    const select = characters.map((item) =>
+      item.id === id ? { ...item, isActive: true } : { ...item, isActive: false }
+    )
+    setCharacters(select)
+    setCharacter(charactersInfo[id - 1])
+  }
+
   return (
     <>
       <Head>
-        <title>Teste</title>
+        <title>Databook</title>
       </Head>
 
       <Flex h='100vh' bgImage="url('/images/paisagem.jpg')" bgPos='center' bgRepeat='no-repeat' bgSize='100% 100%' align='center' justify='center' flexDirection='column'>
         <Image src='/images/logo.png' w='40' />
         <Flex>
-          <Flex mt='10' w='300px' h='60vh' bgColor='secondary.200'>
-            <Box>
-              <Box bgColor='primary.100' w='300px' h='50%' p='5'>
-                <Text fontWeight='700' color='secondary.200' mb='6px'>
-                  Naruto
-                </Text>
-                <Text fontSize='xs' py='0.5' px='1' bgColor='secondary.400' borderRadius='6' maxW='80px'>Vila da Folha</Text>
-                <Flex w='100%' justify='center' mt='5'>
-                  <Image src='/images/naruto.png' w='95px' />
-                </Flex>
-              </Box>
-              <Box mt='135px' px='5'>
-                <Flex>
-                  <Box w='50%'>
-                    <Text fontWeight='700' mb='5px'>Status</Text>
-                    <Text fontSize='xs' mb='5px'>HP: 35</Text>
-                    <Text fontSize='xs' mb='5px'>Ataque: 55</Text>
-                    <Text fontSize='xs' mb='5px'>Defesa: 40</Text>
-                    <Text fontSize='xs' mb='5px'>Velocidade: 90</Text>
-                  </Box>
-                  <Box w='50%'>
-                    <Text fontWeight='700' mb='5px'>Habilidades</Text>
-                    <Text fontSize='xs' mb='5px'>Rasengan</Text>
-                    <Text fontSize='xs' mb='5px'>Clones das Sombras</Text>
-                  </Box>
-                </Flex>
-              </Box>
-            </Box>
-          </Flex>
+          <CardInfo name={character.name} village={character.village} hp={character.hp} attack={character.attack} defense={character.defense} velocity={character.velocity} skillOne={character.skillOne} skillTwo={character.skillTwo} image={character.imageInfo} color={character.color} />
           <Flex direction='column' mt='10' ml='4'>
-            {names.map((item) => (
-              <CardName image={item.image} name={item.name} />
+            {characters.map((item) => (
+              <CardName key={item.id} id={item.id} image={item.image} name={item.name} isActive={item.isActive} onSelect={select} />
             ))}
           </Flex>
         </Flex>
